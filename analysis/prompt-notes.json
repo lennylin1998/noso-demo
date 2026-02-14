@@ -1,0 +1,23 @@
+{
+  "1": {
+    "title": "Single-pass canonical artifact with evidence IDs",
+    "designLogic": [
+      "Provide units to reduce parsing ambiguity",
+      "Require evidenceUnitIds for every major claim",
+      "Tag procedure and sales in one artifact to avoid cross-pass drift"
+    ],
+    "issuesAddressed": [
+      "Inconsistent labels from multiple LLM passes",
+      "Sentence-level fragmentation; moved to turn-level units"
+    ],
+    "newIssuesObserved": [
+      "Over-tagging when tech discusses options casually",
+      "Ambiguity between opportunity_cue and tech_upsell_attempt"
+    ],
+    "nextTriageIdeas": [
+      "Add stricter definitions and examples for sales tags",
+      "Introduce confidence per tag or require minimal evidence threshold",
+      "Optionally add a small deterministic post-pass for missed opportunity pairing"
+    ]
+  }
+}
