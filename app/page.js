@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 const DEFAULT_HASH = "demo-001";
@@ -75,7 +75,7 @@ function Badge({ mode, tag }) {
   return <span className={`badge ${mode}-${tag}`}>{label}</span>;
 }
 
-export default function HomePage() {
+function PageContent() {
   const searchParams = useSearchParams();
   const transcriptHash = searchParams.get("hash") || DEFAULT_HASH;
   const [versions, setVersions] = useState([1]);
@@ -362,5 +362,13 @@ export default function HomePage() {
         </div>
       )}
     </main>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <Suspense fallback={<main className="loading">Loading...</main>}>
+      <PageContent />
+    </Suspense>
   );
 }
