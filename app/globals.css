@@ -348,6 +348,28 @@ select,
   border-left: 6px solid var(--proc-closing);
 }
 
+.comment-block.comment-sales {
+  border-left: 6px solid var(--sales-upsell);
+}
+
+.comment-block.comment-sales-customer_buying_signal {
+  border-left: 6px solid var(--sales-signal);
+}
+
+.comment-block.comment-sales-tech_upsell_attempt {
+  border-left: 6px solid var(--sales-upsell);
+}
+
+.comment-block.comment-sales-opportunity_cue {
+  border-left: 6px solid var(--sales-cue);
+}
+
+.comment-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
 .comment-block + .comment-block {
   margin-top: 14px;
 }
@@ -419,6 +441,18 @@ select,
 
 .unit.group-closing {
   border-left: 4px solid var(--proc-closing);
+}
+
+.unit.sales-customer_buying_signal {
+  border-left: 4px solid var(--sales-signal);
+}
+
+.unit.sales-tech_upsell_attempt {
+  border-left: 4px solid var(--sales-upsell);
+}
+
+.unit.sales-opportunity_cue {
+  border-left: 4px solid var(--sales-cue);
 }
 
 .prompt-meta {

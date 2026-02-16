@@ -215,7 +215,7 @@ function PageContent() {
     }
   ];
 
-  const introRanges = [["u0002", "u0002"], ["u0004", "u0004"]];
+  const introRanges = [["u0002", "u0002"]];
   const diagnosisRanges = [["u0014", "u0014"]];
   const closingRanges = [["u0122", "u0122"]];
 
@@ -253,6 +253,8 @@ function PageContent() {
     }
     return "";
   };
+
+  const salesTaggedUnits = units.filter((unit) => unit.salesTags?.length > 0);
 
   return (
     <main>
@@ -311,7 +313,12 @@ function PageContent() {
         <div className="panel transcript">
           {units.map((unit) => {
             const tags = highlightMode === "procedure" ? unit.procedureTags : unit.salesTags;
-            const groupClass = unitGroupClass(unit.id);
+            const groupClass =
+              highlightMode === "procedure"
+                ? unitGroupClass(unit.id)
+                : unit.salesTags?.length
+                ? `sales-${unit.salesTags[0]}`
+                : "";
             const groupLabel = unitGroupLabel(unit.id);
             return (
               <article
@@ -325,7 +332,7 @@ function PageContent() {
                     <span className="speaker">{unit.speaker}</span>
                   </div>
                   <div className="badges">
-                    {groupLabel ? (
+                    {highlightMode === "procedure" && groupLabel ? (
                       <span className={`badge group-badge ${groupClass}`}>{groupLabel}</span>
                     ) : null}
                     {tags.map((tag) => (
@@ -355,71 +362,99 @@ function PageContent() {
             />
           </section>
 
-          <section className="section">
-            <h3>Procedure comments</h3>
-            <div className="comment-block comment-intro">
-              <div className="comment-header">
-                <span>Introduction</span>
-                <div className="comment-ids">
-                  <button type="button" onClick={() => handleEvidenceSelect("u0002")}>
-                    u0002
-                  </button>
-                  <button type="button" onClick={() => handleEvidenceSelect("u0004")}>
-                    u0004
-                  </button>
-                </div>
-              </div>
-              <textarea placeholder="Comment on the introduction..." rows={3} />
-            </div>
-
-            <div className="comment-block comment-diagnosis">
-              <div className="comment-header">
-                <span>Problem diagnosis</span>
-                <div className="comment-ids">
-                  <button type="button" onClick={() => handleEvidenceSelect("u0014")}>
-                    u0014
-                  </button>
-                </div>
-              </div>
-              <textarea placeholder="Comment on the diagnosis..." rows={3} />
-            </div>
-
-            <div className="group-divider">
-              <span>Solution explanation</span>
-            </div>
-
-            {solutionGroups.map((group) => (
-              <div key={group.id} className="comment-block comment-solution">
+          {highlightMode === "procedure" ? (
+            <section className="section">
+              <h3>Procedure comments</h3>
+              <div className="comment-block comment-intro">
                 <div className="comment-header">
-                  <span>{group.label}</span>
+                  <span>Introduction</span>
                   <div className="comment-ids">
-                    {group.ranges.map(([startId, endId]) => (
-                      <button
-                        key={`${group.id}-${startId}`}
-                        type="button"
-                        onClick={() => handleEvidenceSelect(startId)}
-                      >
-                        {startId === endId ? startId : `${startId}–${endId}`}
-                      </button>
-                    ))}
+                    <button type="button" onClick={() => handleEvidenceSelect("u0002")}>
+                      u0002
+                    </button>
                   </div>
                 </div>
-                <textarea placeholder={`Comment on ${group.label.toLowerCase()}...`} rows={4} />
+                <textarea placeholder="Comment on the introduction..." rows={3} />
               </div>
-            ))}
 
-            <div className="comment-block comment-closing">
-              <div className="comment-header">
-                <span>Closing thank you</span>
-                <div className="comment-ids">
-                  <button type="button" onClick={() => handleEvidenceSelect("u0122")}>
-                    u0122
-                  </button>
+              <div className="comment-block comment-diagnosis">
+                <div className="comment-header">
+                  <span>Problem diagnosis</span>
+                  <div className="comment-ids">
+                    <button type="button" onClick={() => handleEvidenceSelect("u0014")}>
+                      u0014
+                    </button>
+                  </div>
                 </div>
+                <textarea placeholder="Comment on the diagnosis..." rows={3} />
               </div>
-              <textarea placeholder="Comment on the closing..." rows={3} />
-            </div>
-          </section>
+
+              <div className="group-divider">
+                <span>Solution explanation</span>
+              </div>
+
+              {solutionGroups.map((group) => (
+                <div key={group.id} className="comment-block comment-solution">
+                  <div className="comment-header">
+                    <span>{group.label}</span>
+                    <div className="comment-ids">
+                      {group.ranges.map(([startId, endId]) => (
+                        <button
+                          key={`${group.id}-${startId}`}
+                          type="button"
+                          onClick={() => handleEvidenceSelect(startId)}
+                        >
+                          {startId === endId ? startId : `${startId}–${endId}`}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <textarea placeholder={`Comment on ${group.label.toLowerCase()}...`} rows={4} />
+                </div>
+              ))}
+
+              <div className="comment-block comment-closing">
+                <div className="comment-header">
+                  <span>Closing thank you</span>
+                  <div className="comment-ids">
+                    <button type="button" onClick={() => handleEvidenceSelect("u0122")}>
+                      u0122
+                    </button>
+                  </div>
+                </div>
+                <textarea placeholder="Comment on the closing..." rows={3} />
+              </div>
+            </section>
+          ) : (
+            <section className="section">
+              <h3>Sales comments</h3>
+              {salesTaggedUnits.length === 0 ? (
+                <p>No sales-tagged messages found.</p>
+              ) : (
+                salesTaggedUnits.map((unit) => (
+                  <div
+                    key={unit.id}
+                    className={`comment-block comment-sales comment-sales-${unit.salesTags[0]}`}
+                  >
+                    <div className="comment-header">
+                      <span>Sales comment</span>
+                      <div className="comment-ids">
+                        <button type="button" onClick={() => handleEvidenceSelect(unit.id)}>
+                          {unit.id}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="comment-tags">
+                      {unit.salesTags.map((tag) => (
+                        <Badge key={`${unit.id}-${tag}`} mode="sales" tag={tag} />
+                      ))}
+                    </div>
+                    <textarea placeholder="Comment on this sales moment..." rows={3} />
+                  </div>
+                ))
+              )}
+            </section>
+          )}
         </aside>
       </section>
 
