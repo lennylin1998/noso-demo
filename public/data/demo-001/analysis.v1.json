@@ -28,12 +28,9 @@
       "startChar": 54,
       "endChar": 196,
       "procedureTags": [
-        "introduction",
-        "solution_explanation"
+        "introduction"
       ],
-      "salesTags": [
-        "tech_upsell_attempt"
-      ]
+      "salesTags": []
     },
     {
       "id": "u0003",
@@ -50,9 +47,7 @@
       "text": "I'd love to wrap up with you here.",
       "startChar": 257,
       "endChar": 291,
-      "procedureTags": [
-        "introduction"
-      ],
+      "procedureTags": [],
       "salesTags": []
     },
     {
@@ -106,10 +101,7 @@
       "text": "Uh, Yeah. AI is a big thing, man. But so just to. Let's go right to just the differences here. I just wanted to show you. Um, so remember before how we had that before that? Ah, below freezing temperature at 41. It's good to see. Um, and now we have that 20 degree difference as well. Did a really fancy charge there for you and got you in good shape. All that to say? Definitely Bandaid. Sure.",
       "startChar": 654,
       "endChar": 1048,
-      "procedureTags": [
-        "introduction",
-        "problem_diagnosis"
-      ],
+      "procedureTags": [],
       "salesTags": [
         "opportunity_cue"
       ]
@@ -129,12 +121,8 @@
       "text": "It is old.",
       "startChar": 1103,
       "endChar": 1113,
-      "procedureTags": [
-        "problem_diagnosis"
-      ],
-      "salesTags": [
-        "opportunity_cue"
-      ]
+      "procedureTags": [],
+      "salesTags": []
     },
     {
       "id": "u0013",
@@ -154,12 +142,10 @@
       "startChar": 1180,
       "endChar": 1515,
       "procedureTags": [
-        "problem_diagnosis",
-        "solution_explanation"
+        "problem_diagnosis"
       ],
       "salesTags": [
-        "tech_upsell_attempt",
-        "opportunity_cue"
+        "tech_upsell_attempt"
       ]
     },
     {
@@ -177,12 +163,8 @@
       "text": "Michelangelo. I love cats. Get out of here. Aww. I have two cats and three dogs at home. So we have quite the chaos household.",
       "startChar": 1592,
       "endChar": 1718,
-      "procedureTags": [
-        "problem_diagnosis"
-      ],
-      "salesTags": [
-        "opportunity_cue"
-      ]
+      "procedureTags": [],
+      "salesTags": []
     },
     {
       "id": "u0017",
@@ -202,9 +184,7 @@
       "procedureTags": [
         "solution_explanation"
       ],
-      "salesTags": [
-        "tech_upsell_attempt"
-      ]
+      "salesTags": []
     },
     {
       "id": "u0019",
@@ -239,9 +219,7 @@
       "text": "Yeah, I like the idea. It's just kind of a lot. Uh, um, they want every house to have a 200amp panel, have a bathtub generator.",
       "startChar": 2833,
       "endChar": 2960,
-      "procedureTags": [
-        "introduction"
-      ],
+      "procedureTags": [],
       "salesTags": []
     },
     {
@@ -260,12 +238,9 @@
       "startChar": 3014,
       "endChar": 3675,
       "procedureTags": [
-        "introduction",
         "solution_explanation"
       ],
-      "salesTags": [
-        "tech_upsell_attempt"
-      ]
+      "salesTags": []
     },
     {
       "id": "u0025",
@@ -330,6 +305,7 @@
         "problem_diagnosis"
       ],
       "salesTags": [
+        "tech_upsell_attempt",
         "opportunity_cue"
       ]
     },
@@ -384,10 +360,10 @@
       "text": "Uh, currently there's a little on off switch in there called a safety shut off. We always come with a new one. Um, any new thermostat wiring or connections, uh, any new electrical whips, we install that for you. Um, we have circuit breakers, um, on the ac, we just prefer to have a brand new circuit breaker. So we just include that with it. Um, thermostat wire, communication wire. This just means if there is a need to rerun a thermostat wire, we absolutely would. And then H vac permanent. We always pull permits. Um, there is a caveat for permit pulling. Usually they like to do a HERS test as well. Have you ever heard of that before?",
       "startChar": 6183,
       "endChar": 6822,
-      "procedureTags": [
-        "introduction"
-      ],
-      "salesTags": []
+      "procedureTags": [],
+      "salesTags": [
+        "opportunity_cue"
+      ]
     },
     {
       "id": "u0037",
@@ -428,12 +404,9 @@
       "startChar": 9055,
       "endChar": 9916,
       "procedureTags": [
-        "introduction",
         "problem_diagnosis"
       ],
-      "salesTags": [
-        "opportunity_cue"
-      ]
+      "salesTags": []
     },
     {
       "id": "u0041",
@@ -453,9 +426,7 @@
       "procedureTags": [
         "solution_explanation"
       ],
-      "salesTags": [
-        "tech_upsell_attempt"
-      ]
+      "salesTags": []
     },
     {
       "id": "u0043",
@@ -473,12 +444,9 @@
       "startChar": 10952,
       "endChar": 11771,
       "procedureTags": [
-        "introduction",
         "solution_explanation"
       ],
-      "salesTags": [
-        "tech_upsell_attempt"
-      ]
+      "salesTags": []
     },
     {
       "id": "u0045",
@@ -570,7 +538,6 @@
       "startChar": 12922,
       "endChar": 14053,
       "procedureTags": [
-        "introduction",
         "solution_explanation"
       ],
       "salesTags": [
@@ -592,9 +559,7 @@
       "text": "Um, the only time these ever enter defrost, which we won't ever get to here in California, is when they enter 18 degrees Fahrenheit. So it just won't happen. Um, and it's just really funny if we look at like the really high end furnace. It's just like we really climbed the cost. I just. It's substantial.",
       "startChar": 14108,
       "endChar": 14413,
-      "procedureTags": [
-        "introduction"
-      ],
+      "procedureTags": [],
       "salesTags": []
     },
     {
@@ -604,7 +569,9 @@
       "startChar": 14436,
       "endChar": 14486,
       "procedureTags": [],
-      "salesTags": []
+      "salesTags": [
+        "opportunity_cue"
+      ]
     },
     {
       "id": "u0058",
@@ -615,7 +582,9 @@
       "procedureTags": [
         "solution_explanation"
       ],
-      "salesTags": []
+      "salesTags": [
+        "tech_upsell_attempt"
+      ]
     },
     {
       "id": "u0059",
@@ -682,7 +651,9 @@
       "startChar": 16501,
       "endChar": 16593,
       "procedureTags": [],
-      "salesTags": []
+      "salesTags": [
+        "opportunity_cue"
+      ]
     },
     {
       "id": "u0066",
@@ -709,7 +680,9 @@
       "startChar": 16737,
       "endChar": 17550,
       "procedureTags": [],
-      "salesTags": []
+      "salesTags": [
+        "tech_upsell_attempt"
+      ]
     },
     {
       "id": "u0069",
@@ -768,9 +741,7 @@
       "text": "Yes. That's a big difference too, is amount of room taken up outside. These are going to be taller systems. So it is actually, you know what, it'll be very, very, really, really close to the same height, but they're like this thin. Um, but they go they go wide, though.",
       "startChar": 18499,
       "endChar": 18768,
-      "procedureTags": [
-        "introduction"
-      ],
+      "procedureTags": [],
       "salesTags": []
     },
     {
@@ -798,7 +769,9 @@
       "startChar": 18977,
       "endChar": 19042,
       "procedureTags": [],
-      "salesTags": []
+      "salesTags": [
+        "customer_buying_signal"
+      ]
     },
     {
       "id": "u0078",
@@ -843,7 +816,6 @@
       "startChar": 19286,
       "endChar": 20015,
       "procedureTags": [
-        "introduction",
         "solution_explanation"
       ],
       "salesTags": [
@@ -922,7 +894,6 @@
       "startChar": 20425,
       "endChar": 20972,
       "procedureTags": [
-        "introduction",
         "solution_explanation"
       ],
       "salesTags": []
@@ -934,7 +905,9 @@
       "startChar": 20995,
       "endChar": 21082,
       "procedureTags": [],
-      "salesTags": []
+      "salesTags": [
+        "opportunity_cue"
+      ]
     },
     {
       "id": "u0092",
@@ -1207,7 +1180,7 @@
       "endChar": 25923,
       "procedureTags": [],
       "salesTags": [
-        "customer_buying_signal"
+        "opportunity_cue"
       ]
     },
     {
@@ -1261,9 +1234,7 @@
       "procedureTags": [
         "solution_explanation"
       ],
-      "salesTags": [
-        "tech_upsell_attempt"
-      ]
+      "salesTags": []
     },
     {
       "id": "u0125",
@@ -1315,26 +1286,13 @@
     "introduction": {
       "present": true,
       "evidenceUnitIds": [
-        "u0002",
-        "u0004",
-        "u0010",
-        "u0022",
-        "u0024",
-        "u0036",
-        "u0040",
-        "u0044",
-        "u0054",
-        "u0056",
-        "u0074",
-        "u0082",
-        "u0090"
+        "u0002"
       ],
-      "summary": "13 supporting unit(s) tagged for introduction."
+      "summary": "1 supporting unit(s) tagged for introduction."
     },
     "problem_diagnosis": {
       "present": true,
       "evidenceUnitIds": [
-        "u0010",
         "u0012",
         "u0014",
         "u0016",
@@ -1346,7 +1304,6 @@
     "solution_explanation": {
       "present": true,
       "evidenceUnitIds": [
-        "u0002",
         "u0014",
         "u0018",
         "u0024",
@@ -1387,48 +1344,47 @@
     "signals": {
       "unitIds": [
         "u0071",
+        "u0077",
         "u0097",
         "u0099",
         "u0101",
         "u0107",
-        "u0117",
-        "u0119"
+        "u0117"
       ],
       "summary": "Customer asks for prices, financing, and expresses interest in heat pump options."
     },
     "upsellAttempts": {
       "unitIds": [
-        "u0002",
         "u0014",
-        "u0018",
-        "u0024",
         "u0026",
         "u0028",
+        "u0030",
         "u0038",
-        "u0042",
-        "u0044",
+        "u0040",
         "u0046",
         "u0054",
+        "u0058",
         "u0064",
+        "u0068",
         "u0072",
         "u0082",
         "u0094",
         "u0102",
         "u0106",
-        "u0122",
-        "u0124"
+        "u0122"
       ],
       "summary": "Technician offers multiple replacement packages, rebates, and financing paths."
     },
     "opportunityCues": {
       "unitIds": [
         "u0010",
-        "u0012",
         "u0013",
-        "u0014",
-        "u0016",
         "u0030",
-        "u0040",
+        "u0036",
+        "u0057",
+        "u0065",
+        "u0091",
+        "u0119",
         "u0121"
       ],
       "summary": "Age, bandaid fix, and efficiency decline point to upgrade opportunity."
