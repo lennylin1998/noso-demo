@@ -337,3 +337,15 @@ Appendix: Defaults
 	•	Output filenames:
 	•	analysis.v{n}.json
 	•	prompts.v{n}.md
+
+// "u0018": same type, updated version, better efficiency
+// "u0020"-"u0028": heat pump
+// "u0030": water damage solution -- plywood replacement
+// "u0034"-"u0048": heat pump cont.
+// "u0054" - "u0056": Daikin heatpump
+// "u0058" - "u0064": attic package
+// "u0068" - "u0070": Noise reduction
+// "u0073" - "u0092": Customer preference and Boche item lookup
+// "u0093" - "u0096": Installation time
+// "u0099" - "u0116": Financing
+// "u0122": Sign option and guarantee

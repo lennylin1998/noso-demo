@@ -157,24 +157,102 @@ function PageContent() {
     }
   };
 
-  const renderProcedureItem = (key) => {
-    const item = analysis?.procedure?.[key];
-    if (!item) return null;
-    return (
-      <li key={key}>
-        <strong>{PROCEDURE_LABELS[key]}:</strong> {String(item.present)}
-        <p>{item.summary}</p>
-        <EvidenceChips ids={item.evidenceUnitIds} onSelect={handleEvidenceSelect} />
-      </li>
-    );
+  const solutionGroups = [
+    {
+      id: "solution-1",
+      label: "Same type, updated version, better efficiency",
+      ranges: [["u0018", "u0018"]]
+    },
+    {
+      id: "solution-2",
+      label: "Heat pump",
+      ranges: [["u0020", "u0028"]]
+    },
+    {
+      id: "solution-3",
+      label: "Water damage solution — plywood replacement",
+      ranges: [["u0030", "u0030"]]
+    },
+    {
+      id: "solution-4",
+      label: "Heat pump cont.",
+      ranges: [["u0034", "u0048"]]
+    },
+    {
+      id: "solution-5",
+      label: "Daikin heat pump",
+      ranges: [["u0054", "u0056"]]
+    },
+    {
+      id: "solution-6",
+      label: "Attic package",
+      ranges: [["u0058", "u0064"]]
+    },
+    {
+      id: "solution-7",
+      label: "Noise reduction",
+      ranges: [["u0068", "u0070"]]
+    },
+    {
+      id: "solution-8",
+      label: "Customer preference and Bosch item lookup",
+      ranges: [["u0073", "u0092"]]
+    },
+    {
+      id: "solution-9",
+      label: "Installation time",
+      ranges: [["u0093", "u0096"]]
+    },
+    {
+      id: "solution-10",
+      label: "Financing",
+      ranges: [["u0099", "u0116"]]
+    },
+    {
+      id: "solution-11",
+      label: "Sign option and guarantee",
+      ranges: [["u0122", "u0122"]]
+    }
+  ];
+
+  const introRanges = [["u0002", "u0002"], ["u0004", "u0004"]];
+  const diagnosisRanges = [["u0014", "u0014"]];
+  const closingRanges = [["u0122", "u0122"]];
+
+  const groupRanges = [
+    { kind: "intro", ranges: introRanges },
+    { kind: "diagnosis", ranges: diagnosisRanges },
+    { kind: "solution", ranges: solutionGroups.flatMap((group) => group.ranges) },
+    { kind: "closing", ranges: closingRanges }
+  ];
+
+  const unitNumber = (id) => Number(id.replace("u", ""));
+  const isInRange = (unitId, startId, endId) => {
+    const value = unitNumber(unitId);
+    return value >= unitNumber(startId) && value <= unitNumber(endId);
   };
 
-  const renderSalesEvidence = (label, ids) => (
-    <div className="section">
-      <h3>{label}</h3>
-      <EvidenceChips ids={ids} onSelect={handleEvidenceSelect} />
-    </div>
-  );
+  const unitGroupClass = (unitId) => {
+    for (const group of groupRanges) {
+      for (const [startId, endId] of group.ranges) {
+        if (isInRange(unitId, startId, endId)) {
+          return `group-${group.kind}`;
+        }
+      }
+    }
+    return "";
+  };
+
+  const unitGroupLabel = (unitId) => {
+    for (const group of groupRanges) {
+      for (const [startId, endId] of group.ranges) {
+        if (isInRange(unitId, startId, endId)) {
+          return group.kind;
+        }
+      }
+    }
+    return "";
+  };
 
   return (
     <main>
@@ -233,15 +311,23 @@ function PageContent() {
         <div className="panel transcript">
           {units.map((unit) => {
             const tags = highlightMode === "procedure" ? unit.procedureTags : unit.salesTags;
+            const groupClass = unitGroupClass(unit.id);
+            const groupLabel = unitGroupLabel(unit.id);
             return (
               <article
                 key={unit.id}
                 id={`unit-${unit.id}`}
-                className={`unit ${activeUnitId === unit.id ? "is-active" : ""}`}
+                className={`unit ${groupClass} ${activeUnitId === unit.id ? "is-active" : ""}`}
               >
                 <div className="unit-header">
-                  <span className="speaker">{unit.speaker}</span>
+                  <div className="unit-meta">
+                    <span className="unit-id">{unit.id}</span>
+                    <span className="speaker">{unit.speaker}</span>
+                  </div>
                   <div className="badges">
+                    {groupLabel ? (
+                      <span className={`badge group-badge ${groupClass}`}>{groupLabel}</span>
+                    ) : null}
                     {tags.map((tag) => (
                       <Badge key={`${unit.id}-${tag}`} mode={highlightMode} tag={tag} />
                     ))}
@@ -270,60 +356,69 @@ function PageContent() {
           </section>
 
           <section className="section">
-            <h3>Procedure checklist</h3>
-            <ul className="list">
-              {Object.keys(PROCEDURE_LABELS).map(renderProcedureItem)}
-            </ul>
-          </section>
-
-          {analysis?.sales && (
-            <section className="section">
-              <h3>Sales signals</h3>
-              <p>{analysis.sales.coachingSummary}</p>
-            </section>
-          )}
-
-          {analysis?.sales && (
-            <section className="section">
-              {renderSalesEvidence("Buying signals", analysis.sales.signals.unitIds)}
-              {renderSalesEvidence("Upsell attempts", analysis.sales.upsellAttempts.unitIds)}
-              {renderSalesEvidence("Opportunity cues", analysis.sales.opportunityCues.unitIds)}
-            </section>
-          )}
-
-          {analysis?.sales?.missedOpportunities?.length > 0 && (
-            <section className="section">
-              <h3>Missed opportunities</h3>
-              <ul className="list">
-                {analysis.sales.missedOpportunities.map((miss, index) => (
-                  <li key={`${miss.expectedUpsellType}-${index}`}>
-                    <p>
-                      <strong>Trigger:</strong> {miss.triggerUnitIds.join(", ")}
-                    </p>
-                    <p>{miss.reasonMissed}</p>
-                    <p>
-                      <strong>Suggested response:</strong> {miss.suggestedTechResponse}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-
-          <section className="section">
-            <h3>Prompt design</h3>
-            {promptMeta ? (
-              <div className="prompt-meta">
-                <strong>{promptMeta.title}</strong>
-                <div>Version: v{selectedVersion}</div>
-                <div>Design logic: {promptMeta.designLogic.join("; ")}</div>
-                <div>Issues addressed: {promptMeta.issuesAddressed.join("; ")}</div>
-                <div>New issues: {promptMeta.newIssuesObserved.join("; ")}</div>
-                <div>Next triage: {promptMeta.nextTriageIdeas.join("; ")}</div>
+            <h3>Procedure comments</h3>
+            <div className="comment-block comment-intro">
+              <div className="comment-header">
+                <span>Introduction</span>
+                <div className="comment-ids">
+                  <button type="button" onClick={() => handleEvidenceSelect("u0002")}>
+                    u0002
+                  </button>
+                  <button type="button" onClick={() => handleEvidenceSelect("u0004")}>
+                    u0004
+                  </button>
+                </div>
               </div>
-            ) : (
-              <p>Prompt notes unavailable for this version.</p>
-            )}
+              <textarea placeholder="Comment on the introduction..." rows={3} />
+            </div>
+
+            <div className="comment-block comment-diagnosis">
+              <div className="comment-header">
+                <span>Problem diagnosis</span>
+                <div className="comment-ids">
+                  <button type="button" onClick={() => handleEvidenceSelect("u0014")}>
+                    u0014
+                  </button>
+                </div>
+              </div>
+              <textarea placeholder="Comment on the diagnosis..." rows={3} />
+            </div>
+
+            <div className="group-divider">
+              <span>Solution explanation</span>
+            </div>
+
+            {solutionGroups.map((group) => (
+              <div key={group.id} className="comment-block comment-solution">
+                <div className="comment-header">
+                  <span>{group.label}</span>
+                  <div className="comment-ids">
+                    {group.ranges.map(([startId, endId]) => (
+                      <button
+                        key={`${group.id}-${startId}`}
+                        type="button"
+                        onClick={() => handleEvidenceSelect(startId)}
+                      >
+                        {startId === endId ? startId : `${startId}–${endId}`}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <textarea placeholder={`Comment on ${group.label.toLowerCase()}...`} rows={4} />
+              </div>
+            ))}
+
+            <div className="comment-block comment-closing">
+              <div className="comment-header">
+                <span>Closing thank you</span>
+                <div className="comment-ids">
+                  <button type="button" onClick={() => handleEvidenceSelect("u0122")}>
+                    u0122
+                  </button>
+                </div>
+              </div>
+              <textarea placeholder="Comment on the closing..." rows={3} />
+            </div>
           </section>
         </aside>
       </section>
