@@ -459,7 +459,7 @@ function PageContent() {
                       ))}
                     </div>
                     <div className="comment-placeholder">
-                      Write your sales comment here for {unit.id}.
+                      {unit.comment}
                     </div>
                   </div>
                 ))
