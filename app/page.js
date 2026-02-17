@@ -319,39 +319,41 @@ function PageContent() {
 
       <section className="grid">
         <div className="panel transcript">
-          {units.map((unit) => {
-            const tags = highlightMode === "procedure" ? unit.procedureTags : unit.salesTags;
-            const groupClass =
-              highlightMode === "procedure"
-                ? unitGroupClass(unit.id)
-                : unit.salesTags?.length
-                ? `sales-${unit.salesTags[0]}`
-                : "";
-            const groupLabel = unitGroupLabel(unit.id);
-            return (
-              <article
-                key={unit.id}
-                id={`unit-${unit.id}`}
-                className={`unit ${groupClass} ${activeUnitId === unit.id ? "is-active" : ""}`}
-              >
-                <div className="unit-header">
-                  <div className="unit-meta">
-                    <span className="unit-id">{unit.id}</span>
-                    <span className="speaker">{unit.speaker}</span>
+          <div className="transcript-scroll">
+            {units.map((unit) => {
+              const tags = highlightMode === "procedure" ? unit.procedureTags : unit.salesTags;
+              const groupClass =
+                highlightMode === "procedure"
+                  ? unitGroupClass(unit.id)
+                  : unit.salesTags?.length
+                  ? `sales-${unit.salesTags[0]}`
+                  : "";
+              const groupLabel = unitGroupLabel(unit.id);
+              return (
+                <article
+                  key={unit.id}
+                  id={`unit-${unit.id}`}
+                  className={`unit ${groupClass} ${activeUnitId === unit.id ? "is-active" : ""}`}
+                >
+                  <div className="unit-header">
+                    <div className="unit-meta">
+                      <span className="unit-id">{unit.id}</span>
+                      <span className="speaker">{unit.speaker}</span>
+                    </div>
+                    <div className="badges">
+                      {highlightMode === "procedure" && groupLabel ? (
+                        <span className={`badge group-badge ${groupClass}`}>{groupLabel}</span>
+                      ) : null}
+                      {tags.map((tag) => (
+                        <Badge key={`${unit.id}-${tag}`} mode={highlightMode} tag={tag} />
+                      ))}
+                    </div>
                   </div>
-                  <div className="badges">
-                    {highlightMode === "procedure" && groupLabel ? (
-                      <span className={`badge group-badge ${groupClass}`}>{groupLabel}</span>
-                    ) : null}
-                    {tags.map((tag) => (
-                      <Badge key={`${unit.id}-${tag}`} mode={highlightMode} tag={tag} />
-                    ))}
-                  </div>
-                </div>
-                <p className="unit-text">{unit.text}</p>
-              </article>
-            );
-          })}
+                  <p className="unit-text">{unit.text}</p>
+                </article>
+              );
+            })}
+          </div>
         </div>
 
         <aside className="panel sidebar">
@@ -373,6 +375,7 @@ function PageContent() {
           {highlightMode === "procedure" ? (
             <section className="section">
               <h3>Procedure comments</h3>
+              <h4>Click on the id to scroll to the exact conversation.</h4>
               <div className="comment-block comment-intro">
                 <div className="comment-header">
                   <span>Introduction</span>
@@ -434,6 +437,7 @@ function PageContent() {
           ) : (
             <section className="section">
               <h3>Sales comments</h3>
+              <h4>Click on the id to scroll to the exact conversation.</h4>
               {salesTaggedUnits.length === 0 ? (
                 <p>No sales-tagged messages found.</p>
               ) : (
