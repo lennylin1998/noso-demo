@@ -370,6 +370,14 @@ select,
   gap: 6px;
 }
 
+.comment-placeholder {
+  border-radius: var(--radius-sm);
+  border: 1px dashed rgba(28, 26, 23, 0.2);
+  padding: 10px 12px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
 .comment-block + .comment-block {
   margin-top: 14px;
 }

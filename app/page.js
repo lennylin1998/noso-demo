@@ -161,57 +161,68 @@ function PageContent() {
     {
       id: "solution-1",
       label: "Same type, updated version, better efficiency",
-      ranges: [["u0018", "u0018"]]
+      ranges: [["u0018", "u0018"]],
+      comment: "The techician quickly go over the two option of upgrading current system. Point out the benefit and cost in one or two sentences, and smoothly transition to next heat pump option with state policy."
     },
     {
       id: "solution-2",
       label: "Heat pump",
-      ranges: [["u0020", "u0028"]]
+      ranges: [["u0020", "u0028"]],
+      comment: "Mentioning the reabate and make heat pump sound: 'reasonable' is a smart move. Let the customer feel it's a good deal. Emphasizing the thermostat upgrade option is to 'make client easier' is also a subtle but brilliant move."
     },
     {
       id: "solution-3",
       label: "Water damage solution — plywood replacement",
-      ranges: [["u0030", "u0030"]]
+      ranges: [["u0030", "u0030"]],
+      comment: "Probably telling from experience, water damage is the most common issue houseowners have."
     },
     {
       id: "solution-4",
       label: "Heat pump cont.",
-      ranges: [["u0034", "u0048"]]
+      ranges: [["u0034", "u0048"]],
+      comment: "Digging into more details of heat pump. Introduing HERS test, and seaminglessly bring out duct sealing service. Then the benefit of heat pump. The technician put a lot good words on this one, probably the most important product of their line. The technician also does a great job in including all possible discount/promotion/rebates. It should make client feel genuine."
     },
     {
       id: "solution-5",
       label: "Daikin heat pump",
-      ranges: [["u0054", "u0056"]]
+      ranges: [["u0054", "u0056"]],
+      comment: "Clinet is interested in one of the item on the list. Technician does a great job explaining the brand, Daikin, and good parnership with the brand. Probably a little bit too hastle in diving into technical detail. Mabye ask the client why they are interested in this particular product before extending on the defrosting topic."
     },
     {
       id: "solution-6",
       label: "Attic package",
-      ranges: [["u0058", "u0064"]]
+      ranges: [["u0058", "u0064"]],
+      comment: "The technician responds to client's request to move the machine to another place. Great work explaining why current option is the best choice, and the cost comes with moving it."
     },
     {
       id: "solution-7",
       label: "Noise reduction",
-      ranges: [["u0068", "u0070"]]
+      ranges: [["u0068", "u0070"]],
+      comment: "The technician quicly understand client's real pain point, and offer a noise reduction solution."
     },
     {
       id: "solution-8",
       label: "Customer preference and Bosch item lookup",
-      ranges: [["u0073", "u0092"]]
+      ranges: [["u0073", "u0092"]],
+      comment: "Client gives another preference signal here. The technician again responds promptly, introduce the brand, Boche, that client seems interested in, and lookup product detail for a potential rebate."
     },
     {
       id: "solution-9",
       label: "Installation time",
-      ranges: [["u0093", "u0096"]]
+      ranges: [["u0093", "u0096"]],
+      comment: "The technician explains default time expected, and offers an option for quicker installation time. A witty move to make. Since the houseowner asks about time, it must mean that time is something they value."
     },
     {
       id: "solution-10",
       label: "Financing",
-      ranges: [["u0099", "u0116"]]
+      ranges: [["u0099", "u0116"]],
+      comment: "Very detailed explanation on financing plan. Clearly point out any intrinsic cost of paying off earlier."
     },
     {
       id: "solution-11",
       label: "Sign option and guarantee",
-      ranges: [["u0122", "u0122"]]
+      ranges: [["u0122", "u0122"]],
+      comment: "Strong call to action. A invitation to down payment and seal the deal is on point. No further pushing is another great choice, after client explicitly says no."
     }
   ];
 
@@ -374,7 +385,7 @@ function PageContent() {
                     </button>
                   </div>
                 </div>
-                <textarea placeholder="Comment on the introduction..." rows={3} />
+                <div className="comment-placeholder">No formal introduction, just a brief opening. It should be that they've met earlier, and the houseowner let the technicain do the maintenance work. This is the converastion after the work is done.</div>
               </div>
 
               <div className="comment-block comment-diagnosis">
@@ -386,7 +397,7 @@ function PageContent() {
                     </button>
                   </div>
                 </div>
-                <textarea placeholder="Comment on the diagnosis..." rows={3} />
+                <div className="comment-placeholder">Explain that this maintenance work is just temporary remedy, so hop into the cure -- new installation.</div>
               </div>
 
               <div className="group-divider">
@@ -409,20 +420,18 @@ function PageContent() {
                       ))}
                     </div>
                   </div>
-                  <textarea placeholder={`Comment on ${group.label.toLowerCase()}...`} rows={4} />
+                  <div className="comment-placeholder">
+                    {group.comment}
+                  </div>
                 </div>
               ))}
 
               <div className="comment-block comment-closing">
                 <div className="comment-header">
                   <span>Closing thank you</span>
-                  <div className="comment-ids">
-                    <button type="button" onClick={() => handleEvidenceSelect("u0122")}>
-                      u0122
-                    </button>
-                  </div>
+                  <div className="comment-ids"></div>
                 </div>
-                <textarea placeholder="Comment on the closing..." rows={3} />
+                <div className="comment-placeholder">No closing and thank you is recorded. The technicain probably ends recording earlier.</div>
               </div>
             </section>
           ) : (
@@ -449,7 +458,9 @@ function PageContent() {
                         <Badge key={`${unit.id}-${tag}`} mode="sales" tag={tag} />
                       ))}
                     </div>
-                    <textarea placeholder="Comment on this sales moment..." rows={3} />
+                    <div className="comment-placeholder">
+                      Write your sales comment here for {unit.id}.
+                    </div>
                   </div>
                 ))
               )}
