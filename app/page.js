@@ -84,7 +84,7 @@ function PageContent() {
   const [transcriptText, setTranscriptText] = useState("");
   const [promptNotes, setPromptNotes] = useState(null);
   const [promptText, setPromptText] = useState("");
-  const [highlightMode, setHighlightMode] = useState("procedure");
+  const [highlightMode, setHighlightMode] = useState("sales");
   const [activeUnitId, setActiveUnitId] = useState(null);
   const [showPrompt, setShowPrompt] = useState(false);
   const [showNotes, setShowNotes] = useState(false);
@@ -314,9 +314,6 @@ function PageContent() {
 
         <button className="control-button" type="button" onClick={() => setShowPrompt(true)}>
           View Prompt
-        </button>
-        <button className="control-button" type="button" onClick={() => setShowNotes(true)}>
-          View Prompt Notes
         </button>
       </section>
 
